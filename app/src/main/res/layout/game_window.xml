@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:showIn="@layout/activity_log_in"
+    android:background="@drawable/jy"
+    android:id="@+id/">
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" -->
+
+
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="VON"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="90dp"
+        android:text="Math"
+        android:id="@+id/mathbutton"
+        android:layout_marginTop="83dp"
+        android:textSize="25dp"
+        android:textStyle="bold|italic"
+        android:textColorHighlight="#ff38bbff"
+        android:clickable="true"
+        android:background="#ffffb6fb"
+        android:layout_below="@+id/textView4"
+        android:layout_toLeftOf="@+id/textView4"
+        android:layout_toStartOf="@+id/textView4"
+        android:textColor="#ff000000" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="90dp"
+        android:text="Sceince"
+        android:id="@+id/Sceincebutton"
+        android:background="#ff99ff79"
+        android:clickable="true"
+        android:textStyle="bold|italic"
+        android:textSize="25dp"
+        android:layout_alignTop="@+id/mathbutton"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        android:textColor="#ff000000" />
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="90dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="English"
+        android:id="@+id/Englishbutton"
+        android:layout_marginTop="56dp"
+        android:background="#ffc1f6ff"
+        android:clickable="true"
+        android:textStyle="bold|italic"
+        android:textSize="25dp"
+        android:textColor="#ff000000"
+        android:textAlignment="center"
+        android:layout_below="@+id/mathbutton"
+        android:layout_toLeftOf="@+id/Sceincebutton"
+        android:layout_toStartOf="@+id/Sceincebutton" />
+
+
+</RelativeLayout>
