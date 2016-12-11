@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -33,7 +33,7 @@
     <Button
         android:layout_width="110dp"
         android:layout_height="90dp"
-        android:text="Math"
+        android:text="Math Game 1"
         android:id="@+id/mathbutton1"
         android:layout_marginTop="83dp"
         android:textSize="25dp"
@@ -49,8 +49,8 @@
     <Button
         android:layout_width="110dp"
         android:layout_height="90dp"
-        android:text="Sceince"
-        android:id="@+id/Sceincebutton"
+        android:text="Math Game 2"
+        android:id="@+id/leaderbtn"
         android:background="#ff99ff79"
         android:clickable="true"
         android:textStyle="bold|italic"
@@ -63,8 +63,8 @@
     <Button
         android:layout_width="110dp"
         android:layout_height="90dp"
-        android:text="English"
-        android:id="@+id/englishbtn"
+        android:text="Math Game 3"
+        android:id="@+id/gamebtn3"
         android:layout_below="@+id/mathbutton1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="69dp"

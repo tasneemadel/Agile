@@ -58,7 +58,7 @@ public  static  int MathScore=0;
 
               Intent intent = new Intent(Math_Game.this, MathScore.class);
                     Bundle b = new Bundle();
-                    b.putDouble("key", MathScore);
+                    b.putInt("key", MathScore);
                    intent.putExtras(b);
                     //intent.putExtra("MathScore",MathScore);
                     startActivity(intent);

@@ -20,15 +20,23 @@ private Button btn1;
 
         setContentView(R.layout.mathscore);
        // g=new Math_Game();
-        txt=(TextView) findViewById(R.id.game_txt);
+        txt=(TextView) findViewById(R.id.score_txt);
         //txt.setText(g.MathScore);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         //String outlet_no= bundle.getString("MathScore");
-        double s = bundle.getDouble("key");
+       int s = bundle.getInt("key");
+       String  s1 = bundle.getString("User");
         txt.setText(""+s);
+        String d="tasneem";
+
+        MyBD db2 = new MyBD(MathScore.this);
+
+        db2.insertmathscore(db2,d,s,0);
+
 
         btn1=(Button) findViewById(R.id.button3);
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

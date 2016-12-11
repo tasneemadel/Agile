@@ -50,7 +50,7 @@
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/user"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4"
         android:orientation="horizontal"
@@ -105,8 +105,8 @@
         tools:shadowRadius="12"
         android:textSize="28sp"
         android:textColor="@color/black"
-        android:layout_alignBaseline="@+id/textView"
-        android:layout_alignBottom="@+id/textView"
+        android:layout_alignBaseline="@+id/user"
+        android:layout_alignBottom="@+id/user"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -118,7 +118,7 @@
         tools:shadowRadius="12"
         android:textSize="27sp"
         android:textColor="@color/black"
-        android:id="@+id/textView"
+        android:id="@+id/user"
         android:layout_marginTop="33dp"
         android:layout_below="@+id/textView6" />
 
@@ -180,7 +180,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/l_pass"
         android:layout_alignLeft="@+id/l_name"
-        android:layout_alignStart="@+id/l_name" />
+        android:layout_alignStart="@+id/l_name"
+        android:layout_marginLeft="20dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -204,7 +205,7 @@
         tools:shadowRadius="12"
         android:textSize="30sp"
         android:textColor="@color/black"
-        android:background="@color/grey"
+        android:background="#ffffcecb"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/r_genderF"
         android:layout_toStartOf="@+id/r_genderF"

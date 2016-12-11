@@ -3,6 +3,7 @@ package com.example.taseneem21.project;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,7 +47,11 @@ public class Login extends Activity {
                     Toast.makeText(Login.this,
                             "Found user", Toast.LENGTH_LONG).show();
               //      finish();
+                    Bundle b = new Bundle();
+                    b.putString("User", txt1.getText().toString());
+
                     Intent intent = new Intent(Login.this, Account.class);
+                    intent.putExtras(b);
                     startActivity(intent);
 //                    startActivity(intent);
                 }

@@ -26,12 +26,13 @@
         android:hint="password"
         />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="UserName"
-        android:id="@+id/textView"
+        android:text="Username"
+        android:id="@+id/user"
         android:textColor="#131212"
         android:textSize="20dp"
         android:layout_above="@+id/textView3"
@@ -63,11 +64,12 @@
         android:clickable="true"
         android:enabled="true"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4"
         android:textStyle="bold"
-        android:background="@color/grey"
-        android:textSize="20dp" />
+        android:background="#ffffbfca"
+        android:textSize="20dp"
+        android:layout_marginBottom="35dp"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtUserName"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/user"
         android:layout_alignRight="@+id/txtPassword"
         android:layout_alignEnd="@+id/txtPassword"
         android:layout_alignLeft="@+id/textView4"
