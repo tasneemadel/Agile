@@ -2,6 +2,7 @@ package com.example.taseneem21.project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,8 +60,14 @@ public  static  int MathScore=0;
               Intent intent = new Intent(Math_Game.this, MathScore.class);
                     Bundle b = new Bundle();
                     b.putInt("key", MathScore);
+                   // Account.usInfo.setmathscore(MathScore);
                    intent.putExtras(b);
                     //intent.putExtra("MathScore",MathScore);
+
+                    SharedPreferences preferences = getSharedPreferences("userscore",getApplicationContext().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("score",MathScore);
+                    editor.commit();
                     startActivity(intent);
 
                     finish();

@@ -56,20 +56,20 @@
         android:textStyle="bold" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:id="@+id/btnSignIn"
         android:textColor="#0f0e0e"
         android:clickable="true"
         android:enabled="true"
-        android:layout_centerVertical="true"
         android:textStyle="bold"
         android:background="#ffffbfca"
         android:textSize="20dp"
-        android:layout_marginBottom="35dp"
-        android:layout_alignRight="@+id/textView4"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:layout_width="wrap_content"

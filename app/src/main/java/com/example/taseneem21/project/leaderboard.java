@@ -1,10 +1,13 @@
 package com.example.taseneem21.project;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
@@ -25,15 +28,18 @@ public class leaderboard extends Activity {
     EditText eTDialog,etDialogSalary;
     userInfo t;
     CustomListAdapter customListAdapter;
+    private static final int RESULT_LOAD_IMG=1;
+    ImageView profileimg;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.leaderboard);
-      t=new userInfo();
+
 
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.list1);
+        profileimg=(ImageView)findViewById(R.id.imagelogo);
 
        /* TableLayout tl = (TableLayout) findViewById(R.id.myTableLayout);
         TableRow tr1 = new TableRow(this);
@@ -56,7 +62,7 @@ public class leaderboard extends Activity {
             do{
 
 
-
+                t=new userInfo();
 
                 String UserName = cr.getString(cr.getColumnIndex(MyBD.TableUserName));
 
@@ -66,11 +72,11 @@ public class leaderboard extends Activity {
                 int engscore = cr.getInt(cr.getColumnIndex(MyBD.tableenglishscore));
                 t.setengscore(engscore);
                 int totalscore = cr.getInt(cr.getColumnIndex(MyBD.tabletotalscore));
-
+                  String image=cr.getString(cr.getColumnIndex(MyBD.TableUserImage));
                 t.settotalcore(totalscore);
                 t.setmathscore(mathscore);
                 t.setrank(rank);
-
+                t.setuserimage(image);
               /* item2.setText(""+UserName);
                 item3.setText(""+mathscore);
                 item4.setText(""+engcore);
@@ -84,9 +90,7 @@ public class leaderboard extends Activity {
 
                 arrayList.add(t);
 
-                customListAdapter = new CustomListAdapter(arrayList,this);
 
-                listView.setAdapter(customListAdapter);
                 rank++;
                 //String Email = cr.getString(cr.getColumnIndex(MyBD.TableUserEmail));
                 //String preview=UserName+" - "+Email+" - "+age;
@@ -111,6 +115,9 @@ public class leaderboard extends Activity {
 
             cr.close();
             db2.close();
+            customListAdapter = new CustomListAdapter(arrayList,this);
+
+            listView.setAdapter(customListAdapter);
         }
 
 
@@ -119,4 +126,14 @@ public class leaderboard extends Activity {
        //
 }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==RESULT_LOAD_IMG&&resultCode==RESULT_OK&&data!=null)
+        {
+            Uri selectedImage=data.getData();
+            profileimg.setImageURI(selectedImage);
+
+        }
+    }
 }

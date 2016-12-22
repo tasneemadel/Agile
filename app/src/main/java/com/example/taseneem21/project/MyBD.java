@@ -6,10 +6,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
 
-public class MyBD extends SQLiteOpenHelper {
+public class MyBD  extends SQLiteOpenHelper {
 
     public static String DB_NAME = "GamesDB";
     public static int version = 1;
@@ -19,6 +20,7 @@ public class MyBD extends SQLiteOpenHelper {
     public static String TableUserName = "Name";
     public static String TableUserPassword = "Password";
     public static String TableUserEmail = "Email";
+    public static String TableUserImage = "Image";
     public static String TableUserAge = "age";
     public static String TableUserScore = "TotalScore";
     private static Context context1;
@@ -36,10 +38,21 @@ public class MyBD extends SQLiteOpenHelper {
 
 
     //KEY_IMAGE + " BLOB);"
-    String createTableleaderboard = "CREATE TABLE "+tableleaderboard+" ( "+tablerankname+" TEXT primary key , "+tablemathscore+" INTEGER , "+tableenglishscore+" INTEGER ,"+tabletotalscore+" INTEGER);";
+    String createTableleaderboard = "CREATE TABLE "+tableleaderboard+" ( "+tablerankname+" TEXT primary key , "
+            +tablemathscore+" INTEGER , "
+            +tableenglishscore+" INTEGER ,"
+            +tabletotalscore+" INTEGER);";
 
     //String createTableUser = "CREATE TABLE "+TableUsers+" ( "+TableUserName+" TEXT primary key, "+TableUserPassword+" TEXT , "+TableUserEmail+" TEXT , "+TableUserAge+" INTEGER),"+KEY_IMAGE + " BLOB);";
-    String createTableUser = "CREATE TABLE "+TableUsers+" ( "+TableUserName+" TEXT primary key, "+TableUserPassword+" TEXT , "+TableUserEmail+" TEXT ,"+TableUserAge+" INTEGER ,"+tablemathscore+" INTEGER , "+tableenglishscore+" INTEGER ,"+tabletotalscore+" INTEGER);";
+    String createTableUser = "CREATE TABLE "+TableUsers+" ( "
+            +TableUserName+" TEXT primary key, "
+            +TableUserPassword+" TEXT , "
+            +TableUserEmail+" TEXT ,"
+            +TableUserAge+" INTEGER ,"
+            +TableUserImage+" TEXT,"
+            +tablemathscore+" INTEGER , "
+            +tableenglishscore+" INTEGER ,"
+            +tabletotalscore+" INTEGER);";
 
     public MyBD(Context context) {
 
@@ -68,14 +81,14 @@ public class MyBD extends SQLiteOpenHelper {
     public boolean validage(int age){
 
         if(age>=7 &&  age<=13)
-        return true;
+            return true;
 
-       else return false;
+        else return false;
     }
 
     public boolean validemail(String email){
-      if(email.equals(""))
-        return false;
+        if(email.equals(""))
+            return false;
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 
@@ -117,29 +130,9 @@ public class MyBD extends SQLiteOpenHelper {
 
 
     }
-/*
-    public void insert(MyBD db){
-
-        SQLiteDatabase sdb = db.getWritableDatabase();
-        String name; int age ;String password;String email;
-        name="tasneem";
-        age=21;
-        password="dead";
-        email="tasneem_adel@outlook.com";
-
-        ContentValues cv = new ContentValues();
-
-        cv.put(TableUserName,name);
-        cv.put(TableUserAge,age);
-        cv.put(TableUserPassword,password);
-        cv.put(TableUserEmail,email);
-
-        sdb.insert(TableUsers,null,cv);
 
 
-    }*/
-
-    public void insertUser(MyBD db,String name, int age ,String password,String email)
+    public void insertUser(MyBD db,String name, int age ,String password,String email,String img)
     {
 
         SQLiteDatabase sdb = db.getWritableDatabase();
@@ -150,7 +143,7 @@ public class MyBD extends SQLiteOpenHelper {
         cv.put(TableUserAge,age);
         cv.put(TableUserPassword,password);
         cv.put(TableUserEmail,email);
-
+        cv.put(TableUserImage,img);
         sdb.insert(TableUsers,null,cv);
 
         Toast.makeText(context1,name + " is inserted",Toast.LENGTH_SHORT).show();
@@ -166,14 +159,57 @@ public class MyBD extends SQLiteOpenHelper {
 
         cv.put(tableenglishscore,engscore);
         cv.put(tablemathscore,mathscore);
-int s=mathscore+engscore;
+        int s=mathscore+engscore;
         cv.put(tabletotalscore,s);
         //sdb.insert(tableleaderboard,null,cv);
         sdb.update(TableUsers,cv,TableUserName+" = '" +name+"'",null);
-        Toast.makeText(context1,name + " is inserted",Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(context1,name + " is inserted",Toast.LENGTH_SHORT).show();
     }
 
 
+
+    public void updatepassword(MyBD db,String name, String password)
+    {
+
+        SQLiteDatabase sdb = db.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+
+        cv.put(TableUserPassword,password);
+        cv.put(TableUserName,name);
+
+        sdb.update(TableUsers,cv,TableUserName+" = '" +name+"'",null);
+        Toast.makeText(context1, " your password is inserted",Toast.LENGTH_SHORT).show();
+    }
+
+
+    public String getURI(MyBD db,String username){
+        SQLiteDatabase sdb = db.getReadableDatabase();
+        String query = "SELECT "+TableUserImage+" from "+TableUsers+" where "+TableUserName + " = '" + username+"'";
+        Cursor res = sdb.rawQuery(query,null);
+        String urI="";
+        if (res .moveToFirst()) {
+
+            urI=res.getString(res.getColumnIndex(TableUserImage));
+
+
+        }
+
+        return urI;
+
+
+    }
+
+    public void editImage(MyBD db , String userN, String imageUri)
+    {
+
+        SQLiteDatabase sdb = db.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(TableUserImage,imageUri);
+        sdb.update(TableUsers,cv,TableUserName+" = '" +userN+"'",null);
+
+
+    }
 
 
 
@@ -183,22 +219,12 @@ int s=mathscore+engscore;
         SQLiteDatabase sdb = db.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-/*
-        cv.put(tablerankname,name);
-        cv.put(tableenglishscore,engscore);
-        cv.put(tabletotalscore,mathscore+engscore);
-
-
-        sdb.insert(tableleaderboard,null,cv);
-*/
-
         cv.put(tableenglishscore,engscore);
         cv.put(tablemathscore,mathscore);
 
         cv.put(tabletotalscore,mathscore+engscore);
-        //sdb.insert(tableleaderboard,null,cv);
         sdb.update(TableUsers,cv,TableUserName+"="+name,null);
-        Toast.makeText(context1,name + " is inserted",Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(context1,name + " is inserted",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -207,7 +233,7 @@ int s=mathscore+engscore;
         SQLiteDatabase sdb = db.getReadableDatabase();
 
         Cursor cr = sdb.rawQuery("select * from '"+TableUsers +"' ORDER BY '" + tabletotalscore+"' DESC ", null);
-
+     //   Cursor cr = sdb.rawQuery("select * from '"+TableUsers +"' ORDER BY '" + tabletotalscore+"'", null);
         return cr;
 
 
@@ -235,7 +261,30 @@ int s=mathscore+engscore;
     {
         SQLiteDatabase sdb = db.getReadableDatabase();
 
+        Cursor cr = sdb.rawQuery("select "+tablemathscore+" from '"+TableUsers+ "' where "+TableUserName + " = '" + name+"'",null);
+
+        return cr;
+
+
+    }
+
+    public Cursor getTotalscore( MyBD db ,String name)
+    {
+        SQLiteDatabase sdb = db.getReadableDatabase();
+
         Cursor cr = sdb.rawQuery("select "+tabletotalscore+" from '"+TableUsers+ "' where "+TableUserName + " = '" + name+"'",null);
+
+        return cr;
+
+
+    }
+
+
+    public Cursor Age_Email( MyBD db ,String name)
+    {
+        SQLiteDatabase sdb = db.getReadableDatabase();
+
+        Cursor cr = sdb.rawQuery("select "+TableUserEmail+","+TableUserAge+" from '"+TableUsers+ "' where "+TableUserName + " = '" + name+"'",null);
 
         return cr;
 

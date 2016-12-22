@@ -2,6 +2,7 @@ package com.example.taseneem21.project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,14 +26,19 @@ private Button btn1;
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         //String outlet_no= bundle.getString("MathScore");
-       int s = bundle.getInt("key");
+      int s = bundle.getInt("key");
        String  s1 = bundle.getString("User");
-        txt.setText(""+s);
-        String d="tasneem";
-
+        //txt.setText(""+s);
+        //String d="tasneem";
+        SharedPreferences myprefs= getSharedPreferences("user", MODE_WORLD_READABLE);
+        String s3= myprefs.getString("Username", null);
+        String s4=myprefs.getString("Email", null);
+        SharedPreferences mypref= getSharedPreferences("userscore", MODE_WORLD_READABLE);
+        int a=mypref.getInt("score",0);
+        txt.setText(""+a);
         MyBD db2 = new MyBD(MathScore.this);
 
-        db2.insertmathscore(db2,d,s,0);
+        db2.insertmathscore(db2,s3,a,0);
 
 
         btn1=(Button) findViewById(R.id.button3);

@@ -2,9 +2,14 @@ package com.example.taseneem21.project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -12,13 +17,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**
- * Created by taseneem 21 on 11/22/2016.
- */
+import java.io.File;
+
+import it.sephiroth.android.library.picasso.Picasso;
+
+
 public class Account extends ActionBarActivity {
 
    private  Button btn3;
@@ -31,46 +39,28 @@ public class Account extends ActionBarActivity {
     Button uploadimg;
 private TextView txt;
 private RatingBar ratingbar1;
+    private TextView emailtxt;
+    private TextView agetext;
     int totalscore;
-
+    String imageUrl;
+    ImageView profile_img;
+    //public static userInfo usInfo;
+    SharedPreferences myprefs;
+    String s3;
     MyBD bd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account);
+        myprefs= getSharedPreferences("userInfo", MODE_WORLD_READABLE);
+        profile_img=(ImageView)findViewById(R.id.profileImg);
         ratingbar1=(RatingBar)findViewById(R.id.ratingBar1);
         profileimg=(ImageView)findViewById(R.id.profileImg);
-       // uploadimg=(Button)findViewById(R.id.uploadImg);
-       txt=(TextView) findViewById(R.id.welcomeuser);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        //String outlet_no= bundle.getString("MathScore");
-        String s = bundle.getString("User");
-
-        txt.setText("Welcome "+s);
-
-                profileimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
-            }
-        });
-
-        bd=new MyBD(Account.this);
-
-       /* uploadimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
-            }
-        });
-*/
-
-
-        //profileimg.setOnClickListener(this);
-        //uploadimg.setOnClickListener(this);
+        s3= myprefs.getString("username", null);
+//usInfo=new userInfo();
+        LayerDrawable stars = (LayerDrawable) ratingbar1.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+    getEmail_Age_Image();
 
 
 
@@ -89,7 +79,7 @@ private RatingBar ratingbar1;
 
 
         btn3=(Button) findViewById(R.id.leaderbtn);
-
+countratingbar();
 
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +87,14 @@ private RatingBar ratingbar1;
 
                 Intent intent = new Intent(Account.this, leaderboard.class);
                 startActivity(intent);
+            }
+        });
+        profileimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
+
             }
         });
 
@@ -110,21 +108,34 @@ private RatingBar ratingbar1;
         {
             Uri selectedImage=data.getData();
             profileimg.setImageURI(selectedImage);
+            imageUrl=data.getData().toString();
+            SharedPreferences myprefs= getSharedPreferences("userInfo", MODE_WORLD_READABLE);
+            String s3= myprefs.getString("username", null);
+            bd.editImage(bd,s3,imageUrl);
 
         }
     }
 
-    /*
+
     public void countratingbar(){
 
-        Cursor cr = bd.getmathscore(bd,"tasneem");
-        if (cr.getCount() > 0)
+        Cursor cr = bd.getTotalscore(bd, s3);
+
+ if (cr.getCount() > 0)
         {
             cr.moveToFirst();
+            do{
+                totalscore = cr.getInt(cr.getColumnIndex(MyBD.tabletotalscore));
 
-            totalscore = cr.getInt(cr.getColumnIndex(MyBD.tabletotalscore));
+            }while (cr.moveToNext());
 
+            cr.close();
+            bd.close();
         }
+
+
+
+
 
         if(totalscore<=5){
             ratingbar1.setRating((float)0.5);
@@ -147,7 +158,67 @@ private RatingBar ratingbar1;
             ratingbar1.setRating((float)2);
         }
 
-    }*/
+    }
+public void getEmail_Age_Image(){
+    txt=(TextView) findViewById(R.id.welcomeuser);
+    emailtxt=(TextView)findViewById(R.id.emailInfo);
+    agetext=(TextView)findViewById(R.id.ageInfo);
+    Intent intent = getIntent();
+    Bundle bundle = intent.getExtras();
+
+
+
+    SharedPreferences preferences = getSharedPreferences("user",getApplicationContext().MODE_PRIVATE);
+    SharedPreferences.Editor editor = preferences.edit();
+
+    //String s = bundle.getString("User");
+    //String e=bundle.getString("Email");
+   // int age=bundle.getInt("Age");
+    // countratingbar();
+    txt.setText("Welcome " + s3);
+    editor.putString("Username", s3);
+    //editor.commit();
+bd=new MyBD(Account.this);
+
+ String urI=bd.getURI(bd,s3);
+//usInfo.setusername(s3);
+    //usInfo.setuserimage(urI);
+    Uri uri;
+    uri = Uri.parse(urI);
+
+    File f = new File(uri.getPath());
+
+    Picasso.with(this)
+            .load(uri)
+            .fit()
+            .skipMemoryCache()
+            .into(profile_img);
+    MyBD db2 = new MyBD(Account.this);
+    Cursor cr = db2.Age_Email(db2,s3);
+
+
+    if (cr.getCount() > 0)
+    {
+        cr.moveToFirst();
+        do{
+
+     int Age=cr.getInt(cr.getColumnIndex(MyBD.TableUserAge));
+            //usInfo.setage(Age);
+        String Email=cr.getString(cr.getColumnIndex(MyBD.TableUserEmail));
+            //usInfo.setEmail(Email);
+            emailtxt.setText("Email: "+ Email);
+            agetext.setText("Age: "+Age);
+            editor.putString("Email",Email);
+            editor.putInt("Age",Age);
+          editor.commit();
+        }while (cr.moveToNext());
+
+        cr.close();
+        db2.close();
+    }
+
+}
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -189,19 +260,6 @@ private RatingBar ratingbar1;
     }
 
 
- /*
-    public void onClick(View view) {
-        switch(view.getId())
-        {
-
-            case R.id.profileImg:
-                Intent galleryIntent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent,RESULT_LOAD_IMG);
-                break;
 
 
-        }
-    }
-
-*/
 }

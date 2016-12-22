@@ -2,6 +2,7 @@ package com.example.taseneem21.project;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -18,6 +19,7 @@ public class Login extends Activity {
     EditText txt2;
     MyBD bd;
     TextView txt;
+
     boolean validateUser=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +48,18 @@ public class Login extends Activity {
                 if(validateUser){
                     Toast.makeText(Login.this,
                             "Found user", Toast.LENGTH_LONG).show();
-              //      finish();
+
+
                     Bundle b = new Bundle();
                     b.putString("User", txt1.getText().toString());
-
+                    SharedPreferences preferences = getSharedPreferences("userInfo",getApplicationContext().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("username",txt1.getText().toString());
+                    editor.commit();
                     Intent intent = new Intent(Login.this, Account.class);
+
                     intent.putExtras(b);
                     startActivity(intent);
-//                    startActivity(intent);
                 }
                 else{
 
@@ -67,7 +73,11 @@ public class Login extends Activity {
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(Login.this, signup.class);
+                Intent intent = new Intent(Login.this, signup.class);
+                 Bundle b = new Bundle();
+               // b.putString("User", txt1.getText().toString());
+
+                //intent.putExtras(b);
                 startActivity(intent);
 
             }
