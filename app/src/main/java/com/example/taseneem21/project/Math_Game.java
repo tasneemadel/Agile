@@ -51,7 +51,7 @@ public  static  int MathScore=0;
             @Override
             public void onClick(View v) {
                 Gamecount++;
-                if( Gamecount<3){
+                if( Gamecount<7){
            Game();
                 validate_result();}
 

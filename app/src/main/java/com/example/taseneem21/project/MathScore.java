@@ -38,8 +38,8 @@ private Button btn1;
         txt.setText(""+a);
         MyBD db2 = new MyBD(MathScore.this);
 
-        db2.insertmathscore(db2,s3,a,0);
-
+        db2.insertmathscore(db2,s3,a);
+        db2.insertTotalScore(db2,s3);
 
         btn1=(Button) findViewById(R.id.button3);
 

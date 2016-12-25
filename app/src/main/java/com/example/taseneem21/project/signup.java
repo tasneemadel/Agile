@@ -26,9 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by Basma Mohamed on 12/12/2016.
- */
+
 
 public class signup extends Activity {
     Button btn;

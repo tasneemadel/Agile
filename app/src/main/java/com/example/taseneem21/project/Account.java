@@ -63,7 +63,9 @@ private RatingBar ratingbar1;
     getEmail_Age_Image();
 
 
-
+       // Intent intent = getIntent();
+       // Bundle bundle = intent.getExtras();
+       // final String userName = bundle.getString("User");
 
   btn1=(Button) findViewById(R.id.button);
 
@@ -73,6 +75,10 @@ private RatingBar ratingbar1;
             public void onClick(View v) {
 
                 Intent intent = new Intent(Account.this, Game_window.class);
+                //Bundle b = new Bundle();
+               // b.putString("name", userName);
+                //intent.putExtras(b);
+                startActivity(intent);
                 startActivity(intent);
             }
         });
@@ -137,25 +143,39 @@ countratingbar();
 
 
 
-        if(totalscore<=5){
+        if(totalscore<=5 && totalscore>0){
             ratingbar1.setRating((float)0.5);
 
         }
-        else if(totalscore<=10)
+        else if(totalscore<=10 && totalscore>0)
 
         {
             ratingbar1.setRating((float)1);
 
         }
 
-        else if(totalscore<=15){
+        else if(totalscore<=15 && totalscore>0){
 
             ratingbar1.setRating((float)1.5);
         }
 
-        else if(totalscore<=20){
+        else if(totalscore<=20 && totalscore>0){
 
             ratingbar1.setRating((float)2);
+        }
+
+        else if(totalscore<=30 && totalscore>0){
+
+            ratingbar1.setRating((float)3);
+        }
+        else if(totalscore>=40 && totalscore>0){
+
+            ratingbar1.setRating((float)4);
+        }
+
+        else if(totalscore>60 && totalscore>0){
+
+            ratingbar1.setRating((float)5);
         }
 
     }

@@ -5,18 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="match_parent"
     android:weightSum="6"
+    android:background="@drawable/ju2"
     >
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/anonymous"
+        android:src="@drawable/jy"
         android:id="@+id/imagelogo"
-        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18dp"
+        android:layout_alignTop="@+id/name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp" />
 
     <TextView
         android:id="@+id/name"
@@ -25,77 +27,77 @@
         android:textColor="#ff6123fa"
         android:textStyle="bold|italic"
         android:textSize="20sp"
-        android:gravity="center"
         android:text="Name"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        />
-    <TextView
-        android:id="@+id/rank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#ff000000"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:text="description"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:textStyle="bold|italic" />
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imagelogo" />
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="240dp"
+        android:background="@drawable/rounded_bg"
+        android:layout_below="@+id/imagelogo"
+        android:layout_alignLeft="@+id/imagelogo"
+        android:layout_alignStart="@+id/imagelogo"
+        android:layout_marginTop="39dp">
 
 
-    <TextView
-        android:id="@+id/mathscore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:text="description"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/rank"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:textStyle="bold|italic" />
+        <TextView
+            android:id="@+id/totalscore"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:text="description"
+            android:textStyle="italic"
+            android:paddingTop="15dp"
 
+            android:layout_below="@+id/rank"
+            android:layout_alignLeft="@+id/rank"
+            android:layout_alignStart="@+id/rank" />
 
+        <TextView
+            android:id="@+id/engscore"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:text="description"
+            android:textStyle="italic"
+            android:paddingTop="15dp"
 
+            android:layout_below="@+id/mathscore"
+            android:layout_alignLeft="@+id/mathscore"
+            android:layout_alignStart="@+id/mathscore" />
 
+        <TextView
+            android:id="@+id/mathscore"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:text="description"
+            android:paddingTop="15dp"
+            android:textStyle="italic"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp" />
 
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
 
+            android:textColor="#ff000000"
+            android:textSize="23sp"
+            android:text="description"
+            android:textStyle="italic"
+            android:layout_below="@+id/engscore"
+            android:layout_alignLeft="@+id/engscore"
+            android:layout_alignStart="@+id/engscore" />
 
-   <TextView
-    android:id="@+id/engscore"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="#000"
-    android:textSize="18sp"
-    android:gravity="center"
-    android:text="description"
-    android:layout_alignParentRight="true"
-    android:layout_below="@+id/mathscore"
-    android:layout_marginTop="10dp"
-       android:layout_marginRight="20dp"
-       android:textStyle="bold|italic" />
-
-
-
-
-    <TextView
-        android:id="@+id/totalscore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:text="description"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/engscore"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:textStyle="bold|italic" />
-
-
-
+    </RelativeLayout>
 </RelativeLayout>

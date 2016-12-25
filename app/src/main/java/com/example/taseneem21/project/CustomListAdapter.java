@@ -78,14 +78,22 @@ public class CustomListAdapter extends BaseAdapter {
         Uri uri;
         uri = Uri.parse(t.getuserimage());
 
-        File f = new File(uri.getPath());
 
-        //Picasso.with(this).load(f).noPlaceholder().centerCrop().fit().into(profile_img);
-        Picasso.with(convertView.getContext())
-                .load(uri)
-                .fit()
-                .skipMemoryCache()
-                .into(userimage);
+        /////// Condition for null retrieved user images
+if (uri==null) {
+    //Picasso.with(this).load(f).noPlaceholder().centerCrop().fit().into(profile_img);
+
+
+}
+        else{
+    File f = new File(uri.getPath());
+
+    Picasso.with(convertView.getContext())
+            .load(uri)
+            .fit()
+            .skipMemoryCache()
+            .into(userimage);
+}
         return convertView;
     }
 }
