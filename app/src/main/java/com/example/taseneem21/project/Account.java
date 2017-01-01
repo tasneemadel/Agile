@@ -270,6 +270,7 @@ bd=new MyBD(Account.this);
             finish();
             // session.isUserLoggedIn()== false;
             Intent in = new Intent(getApplicationContext(), changepassword.class);
+            finish();
             startActivity(in);
             return true;
         }

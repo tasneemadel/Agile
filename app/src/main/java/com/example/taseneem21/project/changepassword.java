@@ -1,21 +1,25 @@
 package com.example.taseneem21.project;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+
+
+
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.os.Bundle;
+        import android.support.v7.app.ActionBarActivity;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.ListView;
+        import android.widget.TextView;
 
 /**
  * Created by taseneem 21 on 12/9/2016.
  */
 public class changepassword extends ActionBarActivity {
-Button btn1;
+    Button btn1;
     Button btn2;
     TextView txt1;
     TextView txt2;
@@ -23,7 +27,7 @@ Button btn1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.changepassword);
-         btn1=(Button) findViewById(R.id.save);
+        btn1=(Button) findViewById(R.id.save);
         btn2=(Button) findViewById(R.id.cancel);
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -36,11 +40,11 @@ Button btn1;
 
                 if(txt1.getText().toString().equals("")){
 
-                    txt1.setError("Enter new password");
+                    txt1.setError("Enter New Password");
                 }
                 if(txt2.getText().toString().equals("")){
 
-                    txt2.setError("Conform new password");
+                    txt2.setError("Confirm New Password");
                 }
                 else {
                     if (txt1.getText().toString().equals(txt2.getText().toString())) {
@@ -56,7 +60,7 @@ Button btn1;
 
                     } else {
 
-                        txt2.setError("the password doesn't match please insert again the correct one ");
+                        txt2.setError("Passwords do not match. Try Again.");
 
                     }
                 }

@@ -34,8 +34,9 @@ private Button btn1;
             public void onClick(View v) {
 
                 Intent intent = new Intent(Game_window.this, Math_games.class);
-                startActivity(intent);
                 finish();
+                startActivity(intent);
+
             }
         });
 
@@ -48,8 +49,9 @@ private Button btn1;
              //   Bundle b = new Bundle();
            //     b.putString("name", name);
                // intent.putExtras(b);
-                startActivity(intent);
                 finish();
+                startActivity(intent);
+                //finish();
             }
         });
     }

@@ -54,7 +54,7 @@
             android:layout_below="@+id/textView7"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
-            android:textColor="#fe000002" />
+            android:textColor="#ff55ff1f" />
 
 
         <ImageView
@@ -78,6 +78,16 @@
             android:textStyle="italic"
             android:textColor="#ff0a0a0a"
             android:layout_alignParentTop="true" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/star"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp" />
 
     </RelativeLayout>
 </RelativeLayout>

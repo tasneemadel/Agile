@@ -1,5 +1,20 @@
 package com.example.taseneem21.project;
 
+/**
+ * Created by taseneem 21 on 12/26/2016.
+ */
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,9 +61,6 @@ public class Login extends Activity {
                 txt2=(EditText)  findViewById(R.id.txtPassword);
                 validateUser=bd.validateUSer(bd,txt1.getText().toString(),txt2.getText().toString());
                 if(validateUser){
-                    Toast.makeText(Login.this,
-                            "Found user", Toast.LENGTH_LONG).show();
-
 
                     Bundle b = new Bundle();
                     b.putString("User", txt1.getText().toString());
@@ -59,12 +71,13 @@ public class Login extends Activity {
                     Intent intent = new Intent(Login.this, Account.class);
 
                     intent.putExtras(b);
+                    finish();
                     startActivity(intent);
                 }
                 else{
 
                     Toast.makeText(Login.this,
-                            "USer Not Found ", Toast.LENGTH_LONG).show();
+                            "Incorrect Username or Password", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -74,10 +87,11 @@ public class Login extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, signup.class);
-                 Bundle b = new Bundle();
-               // b.putString("User", txt1.getText().toString());
+                Bundle b = new Bundle();
+                // b.putString("User", txt1.getText().toString());
 
                 //intent.putExtras(b);
+                finish();
                 startActivity(intent);
 
             }

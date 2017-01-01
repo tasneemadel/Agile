@@ -1,18 +1,24 @@
 package com.example.taseneem21.project;
 
+
 /**
  * Created by taseneem 21 on 12/24/2016.
  */
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.graphics.Color;
+        import android.os.Bundle;
 
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.ImageButton;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+
+        import static android.graphics.Color.RED;
 
 
 public class English_Game extends Activity {
@@ -23,11 +29,12 @@ public class English_Game extends Activity {
     Button c3;
     Button c4;
     Button sub;
+    TextView result;
     MyBD bd;
     ImageView pic;
     String rightAns;
-    String correct = "Great,Correct Answer :D";
-    String wrong = "Try again :( ";
+    String correct = "Correct Answer";
+    String wrong = "Wrong Answer";
     boolean created = false;
     int eScore = 0;
     int turn = 1;
@@ -37,18 +44,19 @@ public class English_Game extends Activity {
         super.onCreate(savedInstanceState);
 
         //Intent intent = getIntent();
-       // Bundle bundle = intent.getExtras();
-       // name = bundle.getString("name");
+        // Bundle bundle = intent.getExtras();
+        // name = bundle.getString("name");
 
 
 
 
-        setContentView(R.layout.english_game);
+        setContentView(R.layout.eng_game);
         pic = (ImageView) findViewById(R.id.picQuestion);
         c1 = (Button) findViewById(R.id.choice1);
         c2 = (Button) findViewById(R.id.choice2);
         c3 = (Button) findViewById(R.id.choice3);
         c4 = (Button) findViewById(R.id.choice4);
+        result = (TextView) findViewById(R.id.result_txt2);
         sub = (Button) findViewById(R.id.Skip);
         bd = new MyBD(English_Game.this);
 
@@ -68,13 +76,18 @@ public class English_Game extends Activity {
 
     private void play() {
 
+
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                c1.setEnabled(true);
+                c2.setEnabled(true);
+                c3.setEnabled(true);
+                c4.setEnabled(true);
                 if (turn >= 4) {
                     finishGame();
                 } else {
+                    result.setText("");
                     turn++;
                     setGame(turn);
                 }
@@ -88,20 +101,27 @@ public class English_Game extends Activity {
                 String text = c1.getText().toString();
                 if (text.equalsIgnoreCase(rightAns)) {
                     eScore++;
-                    Toast.makeText(English_Game.this, correct, Toast.LENGTH_LONG).show();
+
+                    result.setText(correct);
+                    result.setTextColor(Color.GREEN);
                     if (turn >= 4) {
                         finishGame();
 
                     } else {
-                        turn++;
-                        setGame(turn);
+                      //  turn++;
+            //            setGame(turn);
                     }
                 } else {
 
 
-                    Toast.makeText(English_Game.this, wrong + "" + rightAns, Toast.LENGTH_LONG).show();
+                    result.setText(wrong);
+                    result.setTextColor(RED);
 
                 }
+                c1.setEnabled(false);
+                c2.setEnabled(false);
+                c3.setEnabled(false);
+                c4.setEnabled(false);
             }
         });
 
@@ -113,18 +133,27 @@ public class English_Game extends Activity {
                 if (text.equalsIgnoreCase(rightAns)) {
                     eScore++;
 
-                    Toast.makeText(English_Game.this, correct, Toast.LENGTH_LONG).show();
+                    result.setText(correct);
+                    result.setTextColor(Color.GREEN);
+
                     if (turn >= 4) {
                         finishGame();
                     } else {
-                        turn++;
-                        setGame(turn);
+                       // turn++;
+              //          setGame(turn);
                     }
                 } else {
 
 
-                    Toast.makeText(English_Game.this, wrong, Toast.LENGTH_LONG).show();
+
+                    result.setText(wrong);
+                    result.setTextColor(RED);
+
                 }
+                c1.setEnabled(false);
+                c2.setEnabled(false);
+                c3.setEnabled(false);
+                c4.setEnabled(false);
             }
         });
 
@@ -136,18 +165,27 @@ public class English_Game extends Activity {
                 if (text.equalsIgnoreCase(rightAns)) {
                     eScore++;
 
-                    Toast.makeText(English_Game.this, correct, Toast.LENGTH_LONG).show();
+                    result.setText(correct);
+                    result.setTextColor(Color.GREEN);
+
                     if (turn >= 4) {
                         finishGame();
                     } else {
-                        turn++;
-                        setGame(turn);
+                 //       turn++;
+                //        setGame(turn);
                     }
                 } else {
 
 
-                    Toast.makeText(English_Game.this, wrong, Toast.LENGTH_LONG).show();
+
+                    result.setText(wrong);
+                    result.setTextColor(RED);
+
                 }
+                c1.setEnabled(false);
+                c2.setEnabled(false);
+                c3.setEnabled(false);
+                c4.setEnabled(false);
             }
         });
 
@@ -159,17 +197,29 @@ public class English_Game extends Activity {
                 if (text.equalsIgnoreCase(rightAns)) {
                     eScore++;
 
-                    Toast.makeText(English_Game.this, correct, Toast.LENGTH_LONG).show();
+                    result.setText(correct);
+                    result.setTextColor(Color.GREEN);
+
                     if (turn >= 4) {
                         finishGame();
                     } else {
-                        turn++;
-                        setGame(turn);
+                   //     turn++;
+                  //      setGame(turn);
                     }
+                    c1.setEnabled(false);
+                    c2.setEnabled(false);
+                    c3.setEnabled(false);
+                    c4.setEnabled(false);
                 } else {
 
 
-                    Toast.makeText(English_Game.this, wrong + text, Toast.LENGTH_LONG).show();
+
+                    result.setText(wrong);
+                    result.setTextColor(RED);
+                    c1.setEnabled(false);
+                    c2.setEnabled(false);
+                    c3.setEnabled(false);
+                    c4.setEnabled(false);
                 }
             }
         });
@@ -193,7 +243,7 @@ public class English_Game extends Activity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("engscore", eScore);
         editor.commit();
-
+           finish();
         startActivity(intent);
     }
 
@@ -207,7 +257,7 @@ public class English_Game extends Activity {
 
 
         rightAns = e.getRight();
-
+        result.setText(" ");
         c1.setText(choiceA);
         c2.setText(choiceB);
         c3.setText(choiceC);
@@ -221,3 +271,4 @@ public class English_Game extends Activity {
 
 
 }
+

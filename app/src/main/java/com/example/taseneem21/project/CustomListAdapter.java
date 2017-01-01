@@ -1,18 +1,21 @@
 package com.example.taseneem21.project;
 
-import android.content.Context;
-import android.net.Uri;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.io.File;
-import java.util.ArrayList;
-
 import it.sephiroth.android.library.picasso.Picasso;
+
+
+        import android.content.Context;
+        import android.net.Uri;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.BaseAdapter;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+
+        import java.io.File;
+        import java.util.ArrayList;
+
+        import it.sephiroth.android.library.picasso.Picasso;
 
 /**
  * Created by taseneem 21 on 12/11/2016.
@@ -70,30 +73,30 @@ public class CustomListAdapter extends BaseAdapter {
         final userInfo t = getItem(position);
 
         nameText.setText(t.getUsername());
-        mathText.setText("The math game score : "+t.getmathscore());
-        engText.setText("The english game score : "+t.getengscore());
-        totalText.setText("The total score : "+t.gettotalscore());
-        rankText.setText("The rank : "+t.getrank());
+        mathText.setText("Math Game Score:  "+t.getmathscore());
+        engText.setText("English Game Score:  "+t.getengscore());
+        totalText.setText("Total Score:  "+t.gettotalscore());
+        rankText.setText("Rank:  "+t.getrank());
 
         Uri uri;
         uri = Uri.parse(t.getuserimage());
 
 
         /////// Condition for null retrieved user images
-if (uri==null) {
-    //Picasso.with(this).load(f).noPlaceholder().centerCrop().fit().into(profile_img);
+        if (uri==null) {
+            //Picasso.with(this).load(f).noPlaceholder().centerCrop().fit().into(profile_img);
 
 
-}
+        }
         else{
-    File f = new File(uri.getPath());
+            File f = new File(uri.getPath());
 
-    Picasso.with(convertView.getContext())
-            .load(uri)
-            .fit()
-            .skipMemoryCache()
-            .into(userimage);
-}
+            Picasso.with(convertView.getContext())
+                    .load(uri)
+                    .fit()
+                    .skipMemoryCache()
+                    .into(userimage);
+        }
         return convertView;
     }
 }

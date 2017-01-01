@@ -50,8 +50,9 @@ Button btn2;
         public void onClick(View v) {
 
             Intent intent = new Intent(EnglishScore.this, Account.class);
-            startActivity(intent);
             finish();
+            startActivity(intent);
+
         }
     });
 

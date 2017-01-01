@@ -1,30 +1,31 @@
 package com.example.taseneem21.project;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
+
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.provider.MediaStore;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.EditText;
+        import android.widget.ImageButton;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
 
 
@@ -86,7 +87,7 @@ public class signup extends Activity {
                 txt3=(EditText)findViewById(R.id.editText7);
                 txt4=(EditText)findViewById(R.id.editText);
                 txt5=(EditText)findViewById(R.id.c_password);
-
+                char[] passwordLen = txt3.getText().toString().toCharArray();
                 if(txt1.getText().toString().equals("")){
 
                     txt1.setError("Name is required ");
@@ -112,21 +113,25 @@ public class signup extends Activity {
 
                     if(bd.validateUSername(bd, txt1.getText().toString())){
 
-                        txt1.setError("User name is already taken ,try another one");
+                        txt1.setError("Username is already taken. Try another one.");
                     }
 
-                  //  else if(!bd.validemail(txt4.getText().toString())){
+                    //  else if(!bd.validemail(txt4.getText().toString())){
 
-                     //   txt4.setError("Email is not valid");
-                   // }
+                    //   txt4.setError("Email is not valid");
+                    // }
 
                     else if(!bd.validage(Integer.parseInt(txt2.getText().toString()))){
-                        txt2.setError("Sorry you can't create account,your age is out of the range");
+                        txt2.setError("Sorry, your age must be within 7-10");
 
                     }
                     else if(!txt5.getText().toString().equals(txt3.getText().toString())){
-                        txt5.setError("your password doesn't conform");
+                        txt5.setError("Password doesn't match");
 
+                    }
+                    /////              TESTING FOR PASSWORD LENGTH
+                    else if(passwordLen.length <=4){
+                        txt3.setError("Password too short");
                     }
 
 
@@ -138,8 +143,6 @@ public class signup extends Activity {
 
                         if(bd.validateUSer(bd,txt1.getText().toString(),txt3.getText().toString())){
 
-                            Toast.makeText(signup.this,
-                                    txt1.getText().toString()+"is inserted", Toast.LENGTH_LONG).show();
 
 
 
